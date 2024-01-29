@@ -5,10 +5,17 @@ board_router = APIRouter()
 
 board_list = []
 
-class Board(BaseModel) :
+class Member(BaseModel):
+    id: int
+    name: str
+
+class Board(BaseModel):
     id: int
     subject: str
     content: str
+    member: Member
+
+
 
 @board_router.get("/board")
 def get() -> dict:
