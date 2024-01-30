@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Path
 from pydantic import BaseModel
 
 board_router = APIRouter()
@@ -30,3 +30,7 @@ def post(board: dict) -> dict:
 def post(board: Board) -> dict:
     board_list.append(board)
     return {"message" : "success"}
+
+@board_router.get("/board/{id}")
+def getDetail2(id: int = Path(gt=0, title="게시판 id")) -> dict:
+    return {"board" : board_list[id]}
