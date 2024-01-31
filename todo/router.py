@@ -21,3 +21,8 @@ async def getTodoItem(id: int = Path(gt=-1, title="todo id")) -> dict:
 async def putTodoItem(todo: TodoItem, todo_id: int = Path(gt=-1, title="todoItem id")) -> dict:
     todo_list[todo_id] = todo
     return {"message" : "update success"}
+
+@todo_router.delete("/todo")
+async def deleteTodo() -> dict:
+    todo_list.clear()
+    return {"message" : "delete all success"}
