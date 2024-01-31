@@ -16,3 +16,8 @@ async def getTodo() -> dict:
 @todo_router.get("/todo/{id}")
 async def getTodoItem(id: int = Path(gt=-1, title="todo id")) -> dict:
     return {"item" : todo_list[id]}
+
+@todo_router.put("/todo/{todo_id}")
+async def putTodoItem(todo: TodoItem, todo_id: int = Path(gt=-1, title="todoItem id")) -> dict:
+    todo_list[todo_id] = todo
+    return {"message" : "update success"}
