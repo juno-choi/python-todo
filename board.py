@@ -15,7 +15,18 @@ class Board(BaseModel):
     content: str
     member: Member
 
-
+    class Config:
+        json_schema_extra = {
+            "example" : {
+                "id" : 1,
+                "subject" : "제목",
+                "content" : "내용",
+                "member" : {
+                    "id" : 1,
+                    "name" : "이름"
+                }
+            }
+        }
 
 @board_router.get("/board")
 def get() -> dict:
