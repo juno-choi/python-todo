@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Path
+from fastapi import APIRouter, Path, HTTPException, status
 from todo.model import TodoItem, TodoResponse
 todo_router = APIRouter(
     prefix="/api",
@@ -14,6 +14,12 @@ async def postTodo(todo: TodoItem) -> dict:
 
 @todo_router.get("/todo", response_model=TodoResponse)
 async def getTodo() -> dict:
+    size = len(todo_list)
+    if size == 0:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="todo list is empty!"
+        )
     return {"todos" : todo_list}
 
 @todo_router.get("/todo/{id}")
