@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Path
 from pydantic import BaseModel
 
-board_router = APIRouter()
+board_router = APIRouter(prefix="/api",tags=["board"])
 
 board_list = []
 
