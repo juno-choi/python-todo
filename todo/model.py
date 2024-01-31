@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 class TodoItem(BaseModel):
-    item : str
+    item : int
     class Config:
         json_schema_extra = {
             "example" : {
